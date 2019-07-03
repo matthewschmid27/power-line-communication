@@ -21,18 +21,18 @@
  =================================
 
 ASCII Table
-#     35
-*     42
-0     48
-1     49
-2     50
-3     51
-4     52
-5     53
-6     54
-7     55
-8     56
-9     57
+#     35      00100011
+*     42      00101010
+0     48      00110000
+1     49      00110001
+2     50      00110010
+3     51      00110011
+4     52      00110100
+5     53      00110101
+6     54      00110110
+7     55      00110111
+8     56      00111000
+9     57      00111001
 A     65      01000001
 B     66      01000010
 C     67      01000011
@@ -58,10 +58,13 @@ char keys[ROWS][COLS] = {
   {'7','8','9','C'},
   {'*','0','#','D'}
 };
-byte rowPins[ROWS] = {11, 12, 13, 14}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {7, 8, 9, 10}; //connect to the column pinouts of the keypad
+//byte rowPins[ROWS] = {11, 12, 13, 14}; //connect to the row pinouts of the keypad
+//byte colPins[COLS] = {7, 8, 9, 10}; //connect to the column pinouts of the keypad
 //byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
 //byte colPins[COLS] = {9, 8, 7, 6}; //connect to the column pinouts of the keypad  
+
+byte rowPins[ROWS] = {P1_0, P1_1, P1_2, P1_3};
+byte colPins[COLS] = {P1_4, P1_5, P1_6, P1_7};
 
 //initialize an instance of class NewKeypad
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS); // change hexaKeys to keys?
@@ -78,16 +81,11 @@ void setup() {
   //lcd.autoscroll();   // turn on automatic scrolling (lcd.NoAutoscroll();)
   //lcd.setCursor(0, 0);
   // Print a message to the LCD.
-//  lcd.print("Braydon ");
+  lcd.print("Braydon ");
 
   char variable = B01000100;
   lcd.print(variable);
-  Serial.println(variable); // NOT WORKING
-
-  char key = keypad.getKey();
-  if (key){ // use waitForKey() instead?????
-    lcd.print(key);
-  }
+//  Serial.println(variable); // NOT WORKING
 
 }
 
@@ -96,9 +94,16 @@ void loop() {
   // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 1);
   // print the number of seconds since reset:
-  lcd.print(millis()/1000);
+//  lcd.print(millis()/1000);
 
-  Serial.println(millis()/1000);
+  char key = keypad.getKey();
+  if (key){ // use waitForKey() instead?????
+    lcd.print(key);
+    Serial.println(key);
+  }
+
+
+  //Serial.println(millis()/1000);
   
   //lcd.clear();
 
