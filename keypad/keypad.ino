@@ -31,6 +31,5 @@ void loop() {
   if (key != NO_KEY) {
     Serial.print(key);
     Serial.end();
-  }d
-  
+  }
 }
