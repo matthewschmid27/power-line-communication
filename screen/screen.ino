@@ -96,3 +96,75 @@ void loop() {
 // lcd.scrollDisplayRight();
 // lcd.rightToLeft();   could have used to reverse text print direction
 // lcd.display; lcd.noDisplay();  blank display without losing contents
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <msp430.h>
+
+
+/**
+ * main.c
+ */
+
+#include <LiquidCrystal.h>
+
+// initialize lcd interface pins
+LiquidCrystal lcd(P2_0, P2_1, P2_2, P2_3, P2_4, P2_5);
+
+void setup() {
+
+  lcd.begin(16, 2); // col, row
+
+  lcd.print("Big Brother 0_0");
+  delay(2000);
+  lcd.clear();
+
+}
+
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+
+    setup();
+
+    int i = 0;
+    while(i<20){
+        char keys[16] = {B00110000, '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', '*', '#'};
+
+          lcd.setCursor(0, 0);
+
+          for (int i = 0; i < 16; i++){
+            lcd.print(keys[i]);
+            delay(500);
+          }
+
+          int j = 15;
+          for (int i = 0; i < 16; i++){
+            lcd.setCursor(j, 1);
+            lcd.print(keys[i]);
+            delay(500);
+            j--;
+          }
+
+          delay(2000);
+          lcd.clear();
+
+          i++;
+    }
+
+    return 0;
+}
+
+
+
+
