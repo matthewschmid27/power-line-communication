@@ -41,6 +41,7 @@ Project goals:
 ### Software
 * [C++](http://www.cplusplus.com/)
 * [IAR Embedded Workbench](https://www.iar.com/iar-embedded-workbench/)
+* [Eagle CAD](https://www.autodesk.com/products/eagle/overview)
 
 ### Hardware
 * [MSP430G2 Launchpad](http://www.ti.com/tool/MSP-EXP430G2)
